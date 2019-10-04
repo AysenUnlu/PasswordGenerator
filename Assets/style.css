@@ -1,0 +1,93 @@
+
+.jumbotron{         /*Black background*/
+    width:100vw;
+    height:100vh;
+}
+.container{       /*gray container*/
+    width:75vw;
+    height:85vh;
+}
+.innerContainer{    /*white sub container*/
+    width:95%;
+    height:80%;
+    
+}
+ .formContainer{
+    width:75%;
+    height:80%;
+  
+ }
+ hr{
+     width:100%;
+     border:1px solid #eeeeee;
+ }
+
+h1{
+    font-size:2em;
+}
+h2{
+    font-size:1.5em;
+}
+textarea{
+    border:0.2rem dashed gray!important;
+    background-color:white;
+    color:gray;
+    
+}
+
+#copy{                  /* left margin of copy button adjusted */
+    margin-left:4rem;
+}
+.form-control{          /* When text area is read only it's gray by default,change it to white */
+    background-color:white !important;
+}
+
+#usr{                   /* text field css properties adjusted and made it bold for text to stand out*/
+    width:30%;
+    margin:2rem auto;
+    font-weight:bold
+}
+#error{                 /* css for error message when user attempts to proceed without selecting at least one criteria*/
+    font-weight:bold;
+}
+
+
+/*When screen is smaller than 1034px, the buttons slides out of range, to prevent that font sizes adjusted*/
+@media screen and (max-width:1034px) {
+    .formContainer{
+        font-size:0.9rem;
+    }
+    #copy{
+         font-size:12px;
+    }
+    #generate{
+        font-size:12px;
+    }
+    
+}
+/*The css properties adjusted so it'll look good on small screen, such as text field length, button font-size etc..*/
+@media screen and (max-width:789px) {  
+    h2{
+        font-size:1rem;
+    }
+    hr{
+        margin:0.5rem auto 0.5rem auto;
+    }
+    .formContainer{
+
+        font-size:0.8rem;
+    }
+    #copy{
+         font-size:0.8rem;
+    }
+    #generate{
+        font-size:0.8rem;
+    }
+    .innercontainer{
+        margin:0 auto;
+    }
+    #usr{
+        width:50%;
+        margin-top:0;
+    }
+}

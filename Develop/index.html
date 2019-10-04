@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../Assets/style.css">
+    <title>Password Generator</title>
+     
+  </head>
+  <!--Body of web page kept hidden until the full page and css files are loaded so unstyled page content is not shown
+     onload turns the body visible. Web prowser remains empty until a point everything pops up on screen
+   -->
+  <body style="visibility:hidden;background-color: black;" onload="LoadSelection()">
+   <div class="jumbotron  bg-dark"> <!--My black background-->
+     <div class="container bg-light text-center mx-auto my-auto border border-light"> <!--Light gray container-->
+        
+            <h1 class="page-header  mx-2 py-2">Password Generator</h1>
+       
+            <div class="row bg-white innerContainer mx-3 my-auto"> <!--Inner white container-->
+
+                <h2 class="row pt-4 pl-5 ml-1">Generate a Password</h2> 
+               
+
+               <form class="formContainer mx-1"> <!--This container holds my form elements-->
+                    <hr class="ml-5 pl-4"> <!--Divider-->
+
+                    <div class="form-group"> <!--flexible class that encourages proper grouping of my different ui components-->   
+                       <div class="form-group  text-left ml-5 mb-5" id="subgroup"> <!--This groups my user interface-->
+                          <label for="usr" >Password Length(8-128 characters):</label>
+                          <input type="text" class="form-control-inline required mb-3" id="usr"> <!--Text field-->
+                          <label id="error" style="display:none;"></label>  <!--hidden label for error message-->
+                          <div class="form-check">                          <!--my checkbox-->
+                             <input type="checkbox" class="form-check-input" value="" id="sp">  
+                             <label class="form-check-label">Special Characters</label>  
+                          </div>
+
+                          <div class="form-check">
+                             <input type="checkbox" class="form-check-input" value="" id="nc">   
+                             <label class="form-check-label">Numeric Characters</label>
+                          </div>
+
+                          <div class="form-check">
+                            <input type="checkbox" class="form-check-input" value="" id="ll">
+                            <label class="form-check-label">Lowercase Characters</label>
+                          </div>
+                          <div class="form-check">
+                             <input type="checkbox" class="form-check-input" value="" id="ul">
+                             <label class="form-check-label">Uppercase Characters</label>
+                          </div> 
+                       </div>   
+                       <!--Text area which is hidden at first and will be shown after password is created-->
+                      <textarea class="form-control  my-3 ml-5" readonly id= "password" placeholder = "Your Secure Password" rows="4" cols="90"></textarea>      
+                   </div> 
+
+                   <hr class="ml-5 pl-4"> <!--Divider-->
+
+                   <div class=row> <!--row that contains buttons-->
+                      <div class="col-5"> <!--when generate button is clicked, textarea with password will be shown-->
+                        <button type="button"  class="btn btn-danger btn-block rounded-pill btn-lg ml-5" id="generate" onclick=displayPassword()>Generate Password</button>
+                      </div>
+                      <div class="col"></div> <!--empty colon between buttons-->
+                      <div class="col-5"> <!--when Copy Clipboard is clicked, then password on text-area will be copied on clipboard
+                                              first it's disabled because user will put in criteria to generate password-->
+                        <button type="button"  class="btn btn-secondary btn-block  rounded-pill disabled  btn-lg " id="copy" onclick=copyClipboard()>Copy to Clipboard</button>
+                      </div> 
+                   </div> 
+
+               </form> 
+               
+            </div>  
+         </div>  
+      </div>  
+    
+    <script type="text/javascript">
+         
+
+          var password={   /*password object that contains the password and its criteria */
+               "value":"", //value holds the password to be created
+               "length":0, //length criteria for the password
+               "Special Characters":false, //If password will contain special characters
+               "Numeric Characters":false, //If password will contain numneric characters
+               "Lowercase Characters":false,//If password will contain lowercase characters
+               "Uppercase Characters":false,//If password will contain uppercase characters
+          }
+          
+          var generate=document.getElementById("generate"); //get the buttons and text area
+          var copy=document.getElementById("copy");
+          var t_area=document.querySelector("textarea");
+          var s_group=document.getElementById('subgroup');//This is the area shared by the text-area and criteria code snippet that gets
+                                                         //criteria for the password from the user
+        
+      /**************************************************************************************************/
+      /* Function executes when page is loaded and let's the user to specify  the password criteria
+      /* Text area which holds the password is hidden, will be revealed when generate button is clicked
+      /*************************************************************************************************/
+
+          function LoadSelection(){ //When the page is loaded, criteria code part will be displayed to get the criteria for the password from the user
+              s_group.style.display="block";
+              t_area.style.display="none"; //text area is hidden
+              document.body.style.visibility='visible'; //body is hidden until so that unstyled content won't be displayed
+             
+           
+          }
+
+      /******************************************************************************************************/
+      /* Executed when copy Clipboard button is pressed. It copies the generated password to the clipboard
+      /******************************************************************************************************/
+
+          function copyClipboard(){ 
+             t_area.setSelectionRange(0, 99999);//selection range
+             t_area.select()
+             document.execCommand('copy');
+             var another=confirm("Your Password is Copied to the Clipboard. Do you want to generate another password?");
+             if(another){ //if user confirms to create another password, wait 5 seconds and direct to the criteria page
+               setTimeout(location.reload.bind(location), 5); //wait
+             }
+          }
+
+      /******************************************************************************************************************/
+      /*  Function checks if the password length is more-than/equal-to 8 and less-than/equal-to 128. If criteria is met,
+      /*  returns true, otherwise false
+      /******************************************************************************************************************/
+
+          function validatePasswordLength(){
+            var data=document.querySelector("#usr"); //get text field objet
+            var passwordLength=parseInt(data.value); // get the user input value in the textfield, it has to be converted to number
+            
+                if(isNaN(passwordLength)){  //if user did not enter a number , show a message
+                   data.style.color="red";
+                   data.value="Not A Number";
+                 }
+                 else if(passwordLength<8){ //if user wanted a password less than 8 chars, say it's too short
+                     data.style.color="red";
+                     data.value="Too Short!!";
+                  
+                     }else if(passwordLength>128){ //if user wanted a password more than 128 chars, sat it's too long
+                            data.style.color="red";
+                            data.value="Too Long!!";
+                            } 
+                           else{
+                                 password.length=passwordLength;
+                                 return true;  //criteria met
+                           }   
+                           return false;   //criteria not met
+            }
+           /**********************************************************************************************************/
+           /* Get from user the criteria for the password input by text field and check boxes
+           /**********************************************************************************************************/
+            function setCriteria(){
+               var lbl=  document.querySelector("#error"); //lbl is the object where it'll warn user that he has to check at least one checkbox
+               var data=document.querySelectorAll(".form-check");//get all the checkbox objects
+               for(var i=0;i<data.length;i++){//according to checked fields, update password object's boolean properties
+                  if (data[i].querySelector("label").innerHTML==="Special Characters"){
+                     if(data[i].querySelector("input").checked){
+                        password["Special Characters"]=true;
+                        lbl.style.display="none"; //if one of the checkboxes is checked, there should be no more messages shown to user
+                     }
+                     else{
+                        password["Special Characters"]=false;
+                     }   
+                  }
+                  else if (data[i].querySelector("label").innerHTML==="Numeric Characters"){
+                     if(data[i].querySelector("input").checked){
+                        password["Numeric Characters"]=true;
+                        lbl.style.display="none";
+                     }
+                     else{
+                        password["Numeric Characters"]=false;
+                     }   
+                  }
+                  else if (data[i].querySelector("label").innerHTML==="Lowercase Characters"){
+                     if(data[i].querySelector("input").checked){
+                        password["Lowercase Characters"]=true;
+                        lbl.style.display="none";
+                     }
+                     else{
+                        password["Lowercase Characters"]=false;
+                     }   
+                  }
+                  else if (data[i].querySelector("label").innerHTML==="Uppercase Characters"){
+                     if(data[i].querySelector("input").checked){
+                        password["Uppercase Characters"]=true;
+                        lbl.style.display="none";
+                     }
+                     else{
+                       password["Uppercase Characters"]=false;
+                     }  
+                  }
+               }
+               //If at least one checkbox is checked, the criteria is set, return true, or ask user to check at least one of the check boxes
+               if(password["Special Characters"]||password["Numeric Characters"]||password["Lowercase Characters"]|| password["Uppercase Characters"]){
+                              return true;
+                           }
+                           else{
+                               lbl.style.color="red";
+                               lbl.innerHTML="PLEASE CHECK ONE!!";
+                               lbl.style.display="block";
+                               return false;
+                              
+                           }
+   
+               
+            }
+           /****************************************************************************************************************************/ 
+           /* Displays in the text area automatically generated password, but first checks if the password criteria is valid          
+          /****************************************************************************************************************************/
+          function displayPassword(){
+
+                 var specialCharacterArray=['!','"','#','$','%','&','\'','(',')','*','+','-','.','/',':',';','<','=','>','?','@','\[','\\','\]','^',
+                                            '_','`','{','|','}','~'];
+
+                 var numericCharacterArray=['0','1','2','3','4','5','6','7','8','9'];
+
+                 var lowercaseCharacterArray=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']; 
+
+                 var uppercaseCharacterArray=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']; 
+
+                 var chosenCriteriaArray=[]; //this will hold the corresponding arrays of user chosen criteria
+
+                 var  validation1=validatePasswordLength();    
+                 var  validation2=setCriteria();  
+
+                 console.log(validation1);
+                 console.log(validation2);
+               
+                 if ( validation1 && validation2 ){//if user enters the criteria correctly, it's time to generate password
+                                                   //corresponding arrays of the user chosen criteria is pushed
+                      if(password["Special Characters"]){
+                             chosenCriteriaArray.push(specialCharacterArray);
+
+                      } 
+                      if(password["Numeric Characters"]){
+                             chosenCriteriaArray.push(numericCharacterArray);
+                      } 
+                      if(password["Lowercase Characters"]){
+                             chosenCriteriaArray.push(lowercaseCharacterArray);
+                      } 
+                     if(password["Uppercase Characters"]){
+                             chosenCriteriaArray.push(uppercaseCharacterArray);
+                     } 
+                     
+                     //Make sure Password meets the criteria
+                     //First randomly chose from user specified criteria arrays to make sure that password contains them
+                     // This will be the beginning of the password
+
+                     for(var i=0;i<chosenCriteriaArray.length;i++){
+                        password["value"]+=chosenCriteriaArray[i][Math.floor(Math.random()*(chosenCriteriaArray[i].length))]
+                     }   
+                     var counter=password["length"];
+                     counter=counter-(chosenCriteriaArray.length);
+
+                     //Rest is chosen from random user specified criterias
+
+                      for(var i=0;i<counter;i++){
+                        var chosenArray=chosenCriteriaArray[Math.floor(Math.random()*(chosenCriteriaArray.length))];
+                        var char=chosenArray[Math.floor(Math.random()*chosenArray.length)];
+                            password["value"]+=char;
+                        
+                     }
+                     console.log("PREVIOUS: "+password["value"]);
+
+                     //swap the place of ordered random characters, so there won't be a pattern
+                     //When we made sure that the password will contain characters from the user specified criterias, a pattern is formed
+                     //because of the order. We don't want that so randomly change the places of those order known characters
+                     //Since string is immutable, first it has to be converted to array, places changed and converted to string again
+
+                     var mixed=password["value"].trim().split("");
+                     console.log(mixed);
+                     for (var i=0;i<chosenCriteriaArray.length;i++){
+                        var randomIndex=Math.floor(Math.random()*password["length"]);
+                        console.log("random-index:"+randomIndex);
+                        if (i!=randomIndex){
+                            var temp=mixed[i];
+                            mixed[i]=mixed[randomIndex];
+                            mixed[randomIndex]=temp;
+                         }
+                        
+                     }
+                     password["value"]= mixed.toString().replace(/,/g,''); // when array is converted to string, to remove commas
+                     /***********************************************************************************************/
+                     
+                     console.log(password["value"]); //our password is ready
+                     copy.disabled=false; // now copy botton is enabled, so we can copy to clipboard.
+                     
+                     t_area.style.fontSize="2em";
+                     t_area.innerText=password["value"];
+                     t_area.innerText=t_area.innerText.trim(); //to remove empty lines in text area before password
+                     t_area.style.textAlign="center";          // shown password is centered
+                     t_area.style.verticalAlign="middle"
+                     t_area.style.display="block";            //now we can switch to password shown text area code block
+                     generate.disabled=true;                  //once the password is shown, we can't generate password without
+                     s_group.style.display="none";            //specifying criteria. 
+
+                     
+                     
+               } 
+                
+          }     
+          
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+
+  </body>
+</html>
