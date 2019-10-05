@@ -39,7 +39,7 @@ The application is responsive and it adapts to multiple screen sizes.
 
      ![Message for Non-Number Input](Assets/images/PwdLengthTest1_after.png)
 
-    -------------------------------------------------------------
+    --------------------------------------------------------------
 
      ![Short Password Length](Assets/images/PwdLengthTest2_before.png)
 
@@ -80,7 +80,7 @@ The application is responsive and it adapts to multiple screen sizes.
       ![Corresponding Password](Assets/images/AllCriteria10_after.png)
 
       -----------------------------------------------------------------------------------
-      
+
       ![128 Character Password with Numbers, Lowercase Letters and Symbols](Assets/images/AllButUp128_before.png)
 
       ![Corresponding Password](Assets/images/AllButUp128_after.png)
