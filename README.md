@@ -53,7 +53,7 @@ The application is responsive and it adapts to multiple screen sizes.
      ![Message for Non specified Character Type](Assets/images/CriteriaTest_after.png)
      
     
-    - If the users enters valid criteria for the password, he's provided with a random password that meets his criteria so he can copy to the clipboard. When copy to the clipboard button is pressed, the user is asked if he wants to generate another password. When user enters the criteria for the password, the copy to clipboard button will be disabled because the password has not been generated yet. And when password is shown , generate button will be disabled because we can not generate a password without user inputting criteria.
+  - If the users enters valid criteria for the password, he's provided with a random password that meets his criteria so he can copy to the clipboard. When copy to the clipboard button is pressed, the user is asked if he wants to generate another password. When user enters the criteria for the password, the copy to clipboard button will be disabled because the password has not been generated yet. And when password is shown , generate button will be disabled because we can not generate a password without user inputting criteria.
 
       ![8 Character-All Lowercase Password](Assets/images/Lowercase8_before.png)
 
