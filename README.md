@@ -30,6 +30,8 @@ The application is responsive and it adapts to multiple screen sizes.
    - When the user runs the application, he's prompted to choose from the following password criteria:
 
      ![Criteria page](Assets/images/userInputCriteria.png)
+     
+     ---------------------------------------------------------------------------------------------------
 
    - If the user enters not a number to the password length area, or his password length specification is not between 8-128 characters or he does not specify at least one Character type criteria, an error message is shown:
 
@@ -37,21 +39,25 @@ The application is responsive and it adapts to multiple screen sizes.
 
      ![Message for Non-Number Input](Assets/images/PwdLengthTest1_after.png)
 
+    -------------------------------------------------------------
 
      ![Short Password Length](Assets/images/PwdLengthTest2_before.png)
 
      ![Message for Short Password Length](Assets/images/PwdLengthTest2_after.png)
 
+    -------------------------------------------------------------
 
      ![Long Password Length](Assets/images/PwdLengthTest3_before.png)
 
      ![Message for Long Password Length](Assets/images/PwdLengthTest3_after.png)
 
+    --------------------------------------------------------------
 
      ![Non specified Character Type](Assets/images/CriteriaTest_before.png)
 
      ![Message for Non specified Character Type](Assets/images/CriteriaTest_after.png)
      
+     -----------------------------------------------------------------------------------------------------
     
   - If the users enters valid criteria for the password, he's provided with a random password that meets his criteria so he can copy to the clipboard. When copy to the clipboard button is pressed, the user is asked if he wants to generate another password. When user enters the criteria for the password, the copy to clipboard button will be disabled because the password has not been generated yet. And when password is shown , generate button will be disabled because we can not generate a password without user inputting criteria.
 
@@ -61,18 +67,20 @@ The application is responsive and it adapts to multiple screen sizes.
 
       ![Copying to Clipboard](Assets/images/Lowercase8_after2.png)
 
-
+      ----------------------------------------------------------------------------------
 
       ![8 Character Password with Numbers, Lowercase and Uppercase Letters](Assets/images/NumLowUp8_before.png)
 
       ![Corresponding Password](Assets/images/NumLowUp8_after.png)
 
+      ----------------------------------------------------------------------------------
 
       ![10 Character Password with Numbers; Lowercase,Uppercase Letters and Symbols](Assets/images/AllCriteria10_before.png)
 
       ![Corresponding Password](Assets/images/AllCriteria10_after.png)
 
-
+      -----------------------------------------------------------------------------------
+      
       ![128 Character Password with Numbers, Lowercase Letters and Symbols](Assets/images/AllButUp128_before.png)
 
       ![Corresponding Password](Assets/images/AllButUp128_after.png)
