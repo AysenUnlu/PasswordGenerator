@@ -39,19 +39,19 @@ The application is responsive and it adapts to multiple screen sizes.
 
      ![Message for Non-Number Input](Assets/images/PwdLengthTest1_after.png)
 
-    --------------------------------------------------------------
+     --------------------------------------------------------------
 
      ![Short Password Length](Assets/images/PwdLengthTest2_before.png)
 
      ![Message for Short Password Length](Assets/images/PwdLengthTest2_after.png)
-
-    -------------------------------------------------------------
+     
+      -------------------------------------------------------------
 
      ![Long Password Length](Assets/images/PwdLengthTest3_before.png)
 
      ![Message for Long Password Length](Assets/images/PwdLengthTest3_after.png)
-
-    --------------------------------------------------------------
+     
+     --------------------------------------------------------------
 
      ![Non specified Character Type](Assets/images/CriteriaTest_before.png)
 
