@@ -1,95 +1,104 @@
 # PasswordGenerator
-Responsive Portfolio
-Installation:
-    You can check the running project at:  
-    https://aysenunlu.github.io/ResponsivePortfolio/
 
-Usage:
-   - When you run the application, you're welcomed with an About Me page:
+## About: ##
 
-     ![About me page](assets/images/a1.png)
+This is an application that generates a random password based on user-selected criteria. This app runs in the browser and features dynamically updated HTML and CSS powered by the JavaScript code.
 
-     The page is responsive. The paragraph wraps around the image at breakpoints-large(992px) 
+The user will be prompted to choose from the following password criteria:
 
-     ![About me page](assets/images/a2.png)
-     and medium(768px) 
+* Length (must be between 8 and 128 characters)
 
-     ![About me page](assets/images/a3.png)
+* Character type:
+
+  * Special characters
+  * Numeric characters
+  * Lowercase characters
+  * Uppercase characters
+
+The application validates user input and ensures that at least one character type is selected.
+The user will also have the option to click a button to copy the password to their clipboard.
+The application is responsive and it adapts to multiple screen sizes.
+
+## Installation: ##
+
+    [You can check the running project]: https://aysenunlu.github.io/PasswordGenerator/
+
+## Usage: ##
+
+   - When the user runs the application, he's prompted to choose from the following password criteria:
+
+     ![Criteria page](Assets/images/userInputCriteria.png)
+
+   - If the user enters not a number to the password length area, or his password length specification is not between 8-128 characters or he does not specify at least one Character type criteria, an error message is shown:
+
+     ![Non-Number Input For Password Length](assets/images/PwdLengthTest1_before.png)
+
+     ![Message for Non-Number Input](assets/images/PwdLengthTest1_after.png)
+
+
+     ![Short Password Length](assets/images/PwdLengthTest2_before.png)
+
+     ![Message for Short Password Length](assets/images/PwdLengthTest2_after.png)
+
+
+     ![Long Password Length](assets/images/PwdLengthTest3_before.png)
+
+     ![Message for Long Password Length](assets/images/PwdLengthTest3_after.png)
+
+
+     ![Non specified Character Type](assets/images/CriteriaTest_before.png)
+
+     ![Message for Non specified Character Type](assets/images/CriteriaTest_after.png)
      
-     and at breakpoints-sm(576px) the paragraphs listed below the image
+    - If the users enters valid criteria for the password, he's provided with a random password that meets his criteria so he can copy to the clipboard. When copy to the clipboard button is pressed, the user is asked if he wants to generate another password. When user enters the criteria for the password, the copy to clipboard button will be disabled because the password has not been generated yet. And when password is shown , generate button will be disabled because we can not generate a password without user inputting criteria.
 
-     ![About me page](assets/images/a4.png)
+      ![8 Character-All Lowercase Password](assets/images/Lowercase8_before.png)
 
-   - When you click the portfolio page, you see matrix of images. The images are    
-     placeholders for links to your projects in the future.  
+      ![Corresponding Password](assets/images/Lowercase8_after.png)
 
-     ![Portfolio Page ](assets/images/b1.png)
-
-     You'll see 2x3 matrix for images. 
-     If you make the screen smaller, at the large and medium breakpoints , the image matrix will be 3x2. 
-
-     ![Portfolio Page ](assets/images/b2.png)
-     
-     If you make it smallest, at the small and xsmall(0px), the image matrix will be 5x1. 
-     
-     ![Portfolio Page ](assets/images/b3.png)
-
-     The images and page is responsive.
-
-   - When you click the Contact page, you see name and email text fields and a text 
-     area to write your message and a submit button to send it.  
-
-     ![Contact Page ](assets/images/c1.png)
-     
-     ![Contact Page ](assets/images/c4.png)
-
-   - The footer is fixed to the bottom and does not run up with the length of the content.   
-
-   - At breakpoints small and xsmall, navigation bar changes, the horizontal list menu 
-    is displayed under the name logo
-
-How:
-
-First, I used Bootstrap CSS Framework to recreate my portfolio. Responsiveness is achieved through bootstrap. Media queries used to change the navigation bar for small and xsmall screens. Following pages are created:
-
-index.html: Includes a short biography.
-
-portfolio.html: Contains image placeholders to link to projects in the future
-
-contact.html: The user enters his name and email, sends a message
-
-Using Bootstrap, my portfolio site is created with the following items:
+      ![Copying to Clipboard](assets/images/Lowercase8_after2.png)
 
 
-A navbar : Bootstrap navbar is used. To change the layout for navigation bar for small and x-small screens media queries are used 
 
-A responsive layout: Layout is responsive through bootstrap.
+      ![8 Character Password with Numbers, Lowercase and Uppercase Letters](assets/images/NumLowUp8_before.png)
 
-Responsive images: Images are responsive as well
+      ![Corresponding Password](assets/images/NumLowUp8_after.png)
 
-I used Bootstrap's grid system for my "about me" page. Which lines are going to be shown depends on the screen size, so text will wrap around the image with large and medium screen sizes.
 
-Grid System is used for "portfolio page" as well with subrows so images and headings repositioned without breaking.
+      ![10 Character Password with Numbers; Lowercase,Uppercase Letters and Symbols](assets/images/AllCriteria10_before.png)
 
-For Contact page bootstrap's label,text field, text area and buttons are used so it's responsive
+      ![Corresponding Password](assets/images/AllCriteria10_after.png)
 
-On small and larger screens, I have margins on left and right sides of the screen. 
 
-On xs screen, content takes up entire screen.
+      ![128 Character Password with Numbers, Lowercase Letters and Symbols](assets/images/AllButUp128_before.png)
 
-I used a sticky footer which resides on the bottom of the page.
+      ![Corresponding Password](assets/images/AllButUp128_after.png)
 
-Credits: 
+## How: ##
 
-I'm forever grateful for the Bootstrap Documentation which can be accessed by the link:
-https://getbootstrap.com/docs/4.3/getting-started/introduction/
+This application runs in the browser. HTML and CSS are dynamically updated using JavaScript. 
 
-I'm also greatful for our instructor Omar Patel and TA's Tyler Bray and Matthew Calimbas for their feedback and recommendations.
+When the page loads for the first time,the HTML code snippet that's related to showing generated password is hidden and the one related for the user to enter criteria is shown. The body of the web page is kept hidden until the full page and CSS files are loaded. Once everything is loaded, onload function turns the body visible. Web browser remains empty until everything pops up on the screen.
 
-Licence:
+After user enters criteria for the password and clicks on the generate button, "displayPassword()" function is fired up. First it's made sure that user entered valid criteria. Then an array is formed which contains the arrays of character type criteria. Since the characters will be chosen randomly from this array, to make sure all the user criteria represented in the password; first 4 characters are chosen randomly from character type arrays and rest chosen from random characters from random criteria. The problem with this approach is that there's a pattern. We'll know the order of criteria. To break this i randomly distribute first 4 characters, so the password to be generated will be completely random with no predetermined patterns. Since String types are immutable;to redistribute, I had to form an array from the string, changed the order of the characters and converted that to string again after eliminating the commas.
+
+At last user input part is hidden and password showing part is shown. Here user can copy the password to the clipboard by clicking on the "Copy to Clipboard" button. Then "copyClipboard" function is fired up. In that function, the selection range is specified, textarea is selected and copied to the clipboard and user is prompted whether he wants to generate another password. If he does, the user input page is shown again; if not, the password page is kept with the password being highlighted. 
+
+## Credits: ## 
+
+I'm forever greatful for our instructor Omar Patel and TA's Tyler Bray and Matthew Calimbas for their feedback and recommendations on how I can improve my application and next steps that can be taken.
+
+I conducted a lot of google searches during the implementation of this application. The web sites that I found useful are listed below:
+
+  * https://www.w3schools.com/howto/howto_js_copy_clipboard.asp
+  * https://stackoverflow.com/questions/3221561/eliminate-flash-of-unstyled-content
+  * https://www.w3schools.com/jsref/jsref_replace.asp
+
+
+## Licence: ##
 
 Anybody is welcomed to copy code snippets and test it out.
 
-Limitations:
+## Limitations: ##
 
-On the contact page, submit button does not work since no javascript code is added.
+When the page is loaded there is a flash of empty content in a split second.
