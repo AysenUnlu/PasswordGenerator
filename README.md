@@ -27,7 +27,7 @@ The application is responsive and it adapts to multiple screen sizes.
 
 ## Usage: ##
     
-    ![Password Generator](Assets/images/PasswordGenerator.gif)
+  ![Password Generator](Assets/images/PasswordGenerator.gif)
 
    - When the user runs the application, he's prompted to choose from the following password criteria.
 
