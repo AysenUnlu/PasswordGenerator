@@ -74,11 +74,11 @@
          </div>  
       </div>  
     
-    <script type="text/javascript">
+    <script type="text/javascript" src="dist/index.js">
          
 
-          var password={   /*password object that contains the password and its criteria */
-               "value":"", //value holds the password to be created
+/*          var password={   /*password object that contains the password and its criteria */
+/*               "value":"", //value holds the password to be created
                "length":0, //length criteria for the password
                "Special Characters":false, //If password will contain special characters
                "Numeric Characters":false, //If password will contain numneric characters
@@ -97,7 +97,7 @@
       /* Text area which holds the password is hidden, will be revealed when generate button is clicked
       /*************************************************************************************************/
 
-          function LoadSelection(){ //When the page is loaded, criteria code part will be displayed to get the criteria for the password from the user
+ /*         function LoadSelection(){ //When the page is loaded, criteria code part will be displayed to get the criteria for the password from the user
               s_group.style.display="block";
               t_area.style.display="none"; //text area is hidden
               document.body.style.visibility='visible'; //body is hidden until so that unstyled content won't be displayed
@@ -109,7 +109,7 @@
       /* Executed when copy Clipboard button is pressed. It copies the generated password to the clipboard
       /******************************************************************************************************/
 
-          function copyClipboard(){ 
+  /*        function copyClipboard(){ 
              t_area.setSelectionRange(0, 99999);//selection range
              t_area.select()
              document.execCommand('copy');
@@ -124,7 +124,7 @@
       /*  returns true, otherwise false
       /******************************************************************************************************************/
 
-          function validatePasswordLength(){
+    /*      function validatePasswordLength(){
             var data=document.querySelector("#usr"); //get text field objet
             var passwordLength=parseInt(data.value); // get the user input value in the textfield, it has to be converted to number
             
@@ -149,7 +149,7 @@
            /**********************************************************************************************************/
            /* Get from user the criteria for the password input by text field and check boxes
            /**********************************************************************************************************/
-            function setCriteria(){
+  /*          function setCriteria(){
                var lbl=  document.querySelector("#error"); //lbl is the object where it'll warn user that he has to check at least one checkbox
                var data=document.querySelectorAll(".form-check");//get all the checkbox objects
                for(var i=0;i<data.length;i++){//according to checked fields, update password object's boolean properties
@@ -207,7 +207,7 @@
            /****************************************************************************************************************************/ 
            /* Displays in the text area automatically generated password, but first checks if the password criteria is valid          
           /****************************************************************************************************************************/
-          function displayPassword(){
+  /*        function displayPassword(){
 
                  var specialCharacterArray=['!','"','#','$','%','&','\'','(',')','*','+','-','.','/',':',';','<','=','>','?','@','\[','\\','\]','^',
                                             '_','`','{','|','}','~'];
@@ -282,7 +282,7 @@
                      password["value"]= mixed.toString().replace(/,/g,''); // when array is converted to string, to remove commas
                      /***********************************************************************************************/
                      
-                     console.log(password["value"]); //our password is ready
+   /*                  console.log(password["value"]); //our password is ready
                      copy.disabled=false; // now copy botton is enabled, so we can copy to clipboard.
                      
                      t_area.style.fontSize="2em";
@@ -298,7 +298,7 @@
                      
                } 
                 
-          }     
+          }    */ 
           
     </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
