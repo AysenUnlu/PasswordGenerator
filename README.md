@@ -23,7 +23,7 @@ The application is responsive and it adapts to multiple screen sizes.
 
     You can check the running project:
     
-    https://aysenunlu.github.io/PasswordGenerator/
+  [https://aysenunlu.github.io/PasswordGenerator/](https://aysenunlu.github.io/PasswordGenerator/)
 
 ## Usage: ##
     
